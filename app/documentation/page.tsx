@@ -1,84 +1,83 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { FiBook, FiZap, FiLayers, FiCode, FiArrowRight } from "react-icons/fi"
+import { BookOpen, Layers, Zap, Code, ArrowRight } from "lucide-react"
+
+const sections = [
+  {
+    icon: BookOpen,
+    title: "Getting Started",
+    description: "Learn how to set up your account and start collecting feedback.",
+    label: "Read Guide",
+  },
+  {
+    icon: Layers,
+    title: "Channels Integration",
+    description: "Connect your feedback sources: email, Discord, GitHub, and more.",
+    label: "Read Guide",
+  },
+  {
+    icon: Zap,
+    title: "AI Features",
+    description: "Understand how SIDE uses AI to analyze and categorize feedback.",
+    label: "Read Guide",
+  },
+  {
+    icon: Code,
+    title: "API Reference",
+    description: "Complete API documentation for developers.",
+    label: "View API",
+  },
+]
+
+const quickLinks = ["Installation Guide", "Configuration", "Best Practices", "Troubleshooting"]
 
 export default function DocumentationPage() {
   return (
-    <div className="min-h-screen bg-canvas text-white">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-6 pt-32 pb-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Documentation</h1>
-        <p className="text-xl text-ink-muted mb-12 leading-relaxed">Everything you need to get started with SIDE.</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiBook className="w-7 h-7 text-accent-blue" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Getting Started</h3>
-              <p className="text-ink-muted mb-6 leading-relaxed">Learn how to set up your account and start collecting feedback.</p>
-              <Button variant="secondary" className="w-full hover:bg-surface-3 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                Read Guide <FiArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
+      <main className="mx-auto max-w-4xl px-6 pt-32 pb-20">
+        <h1 className="mb-6 text-5xl font-bold text-foreground md:text-6xl">Documentation</h1>
+        <p className="mb-12 text-xl leading-relaxed text-muted-foreground">
+          Everything you need to get started with SIDE.
+        </p>
 
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-semantic-success/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-semantic-success/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-semantic-success/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiLayers className="w-7 h-7 text-semantic-success" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Channels Integration</h3>
-              <p className="text-ink-muted mb-6 leading-relaxed">Connect your feedback sources: email, Discord, GitHub, and more.</p>
-              <Button variant="secondary" className="w-full hover:bg-surface-3 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                Read Guide <FiArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-semantic-warning/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-semantic-warning/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-semantic-warning/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiZap className="w-7 h-7 text-semantic-warning" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">AI Features</h3>
-              <p className="text-ink-muted mb-6 leading-relaxed">Understand how SIDE uses AI to analyze and categorize feedback.</p>
-              <Button variant="secondary" className="w-full hover:bg-surface-3 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                Read Guide <FiArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiCode className="w-7 h-7 text-accent-blue" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">API Reference</h3>
-              <p className="text-ink-muted mb-6 leading-relaxed">Complete API documentation for developers.</p>
-              <Button variant="secondary" className="w-full hover:bg-surface-3 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                View API <FiArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
+        <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {sections.map((section) => (
+            <Card key={section.title}>
+              <CardContent className="p-8">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
+                  <section.icon className="h-7 w-7 text-foreground" />
+                </div>
+                <h3 className="mb-3 text-2xl font-bold text-foreground">{section.title}</h3>
+                <p className="mb-6 leading-relaxed text-muted-foreground">{section.description}</p>
+                <Button variant="outline" className="w-full">
+                  {section.label} <ArrowRight />
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/30 transition-all duration-300">
+        <Card>
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">Quick Links</CardTitle>
+            <CardTitle className="text-2xl font-bold text-foreground">Quick Links</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <Link href="#" className="block text-ink-muted hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Installation Guide</Link>
-              <Link href="#" className="block text-ink-muted hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Configuration</Link>
-              <Link href="#" className="block text-ink-muted hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Best Practices</Link>
-              <Link href="#" className="block text-ink-muted hover:text-white transition-colors duration-300 hover:translate-x-2 transform inline-block">Troubleshooting</Link>
+              {quickLinks.map((link) => (
+                <Link
+                  key={link}
+                  href="#"
+                  className="block text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link}
+                </Link>
+              ))}
             </div>
           </CardContent>
         </Card>

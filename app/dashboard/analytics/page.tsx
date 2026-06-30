@@ -1,6 +1,7 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { mockAnalytics } from "@/lib/data/mock-data"
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 
@@ -10,28 +11,28 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-display-lg text-ink mb-2">Analytics</h1>
-        <p className="font-body text-ink-muted">Track feedback trends and metrics</p>
+        <h1 className="text-foreground text-2xl font-semibold mb-1">Analytics</h1>
+        <p className="text-muted-foreground">Track feedback trends and metrics</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="font-card-title">Sentiment Trend</CardTitle>
+            <CardTitle>Sentiment Trend</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={mockAnalytics.sentimentTrend}>
-                <CartesianGrid strokeDasharray="3 " stroke="#3b3d45" />
-                <XAxis dataKey="date" stroke="#b2b6bd" fontSize={12} />
-                <YAxis stroke="#b2b6bd" fontSize={12} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#15181e", border: "1px solid #3b3d45", borderRadius: "8px" }}
-                  itemStyle={{ color: "#ffffff" }}
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                  itemStyle={{ color: 'hsl(var(--foreground))' }}
                 />
                 <Legend />
                 <Line type="monotone" dataKey="positive" stroke="#00ca8e" strokeWidth={2} name="Positive" />
-                <Line type="monotone" dataKey="neutral" stroke="#b2b6bd" strokeWidth={2} name="Neutral" />
+                <Line type="monotone" dataKey="neutral" stroke="hsl(var(--muted-foreground))" strokeWidth={2} name="Neutral" />
                 <Line type="monotone" dataKey="negative" stroke="#e62b1e" strokeWidth={2} name="Negative" />
               </LineChart>
             </ResponsiveContainer>
@@ -40,7 +41,7 @@ export default function AnalyticsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="font-card-title">Channel Distribution</CardTitle>
+            <CardTitle>Channel Distribution</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -59,9 +60,9 @@ export default function AnalyticsPage() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#15181e", border: "1px solid #3b3d45", borderRadius: "8px" }}
-                  itemStyle={{ color: "#ffffff" }}
+                <Tooltip
+                  contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                  itemStyle={{ color: 'hsl(var(--foreground))' }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -70,17 +71,17 @@ export default function AnalyticsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="font-card-title">Feedback Volume</CardTitle>
+            <CardTitle>Feedback Volume</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={mockAnalytics.feedbackVolume}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#3b3d45" />
-                <XAxis dataKey="date" stroke="#b2b6bd" fontSize={12} />
-                <YAxis stroke="#b2b6bd" fontSize={12} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#15181e", border: "1px solid #3b3d45", borderRadius: "8px" }}
-                  itemStyle={{ color: "#ffffff" }}
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                  itemStyle={{ color: 'hsl(var(--foreground))' }}
                 />
                 <Bar dataKey="count" fill="#7b42bc" />
               </BarChart>
@@ -90,17 +91,17 @@ export default function AnalyticsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="font-card-title">Ticket Growth</CardTitle>
+            <CardTitle>Ticket Growth</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={mockAnalytics.ticketGrowth}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#3b3d45" />
-                <XAxis dataKey="date" stroke="#b2b6bd" fontSize={12} />
-                <YAxis stroke="#b2b6bd" fontSize={12} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#15181e", border: "1px solid #3b3d45", borderRadius: "8px" }}
-                  itemStyle={{ color: "#ffffff" }}
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                  itemStyle={{ color: 'hsl(var(--foreground))' }}
                 />
                 <Legend />
                 <Line type="monotone" dataKey="created" stroke="#7b42bc" strokeWidth={2} name="Created" />
@@ -113,17 +114,17 @@ export default function AnalyticsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-card-title">Priority Distribution</CardTitle>
+          <CardTitle>Priority Distribution</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={mockAnalytics.priorityDistribution} layout="horizontal">
-              <CartesianGrid strokeDasharray="3 3" stroke="#3b3d45" />
-              <XAxis type="number" stroke="#b2b6bd" fontSize={12} />
-              <YAxis dataKey="priority" type="category" stroke="#b2b6bd" fontSize={12} width={80} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: "#15181e", border: "1px solid #3b3d45", borderRadius: "8px" }}
-                itemStyle={{ color: "#ffffff" }}
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+              <YAxis dataKey="priority" type="category" stroke="hsl(var(--muted-foreground))" fontSize={12} width={80} />
+              <Tooltip
+                contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                itemStyle={{ color: 'hsl(var(--foreground))' }}
               />
               <Bar dataKey="count" fill="#14c6cb" />
             </BarChart>

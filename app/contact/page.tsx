@@ -1,67 +1,64 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import Link from "next/link"
+import { Textarea } from "@/components/ui/textarea"
 import Navbar from "@/components/navbar"
-import { FiMail, FiMapPin, FiSend } from "react-icons/fi"
+import { Mail, MapPin, Send } from "lucide-react"
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-canvas text-white">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="max-w-2xl mx-auto px-6 pt-32 pb-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Contact Us</h1>
-        <p className="text-xl text-ink-muted mb-12 leading-relaxed">Have questions? We'd love to hear from you.</p>
-        
-        <Card className="mb-8 bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10">
+      <main className="mx-auto max-w-2xl px-6 pt-32 pb-20">
+        <h1 className="mb-6 text-5xl font-bold text-foreground md:text-6xl">Contact Us</h1>
+        <p className="mb-12 text-xl leading-relaxed text-muted-foreground">Have questions? We&apos;d love to hear from you.</p>
+
+        <Card className="mb-8">
           <CardContent className="p-8">
             <form className="space-y-6">
               <div>
-                <label className="text-sm font-medium text-white mb-2 block">Name</label>
-                <Input placeholder="Your name" className="bg-surface-2 text-white border-hairline focus:border-accent-blue" />
+                <label className="mb-2 block text-sm font-medium text-foreground">Name</label>
+                <Input placeholder="Your name" />
               </div>
               <div>
-                <label className="text-sm font-medium text-white mb-2 block">Email</label>
-                <Input type="email" placeholder="your@email.com" className="bg-surface-2 text-white border-hairline focus:border-accent-blue" />
+                <label className="mb-2 block text-sm font-medium text-foreground">Email</label>
+                <Input type="email" placeholder="your@email.com" />
               </div>
               <div>
-                <label className="text-sm font-medium text-white mb-2 block">Subject</label>
-                <Input placeholder="How can we help?" className="bg-surface-2 text-white border-hairline focus:border-accent-blue" />
+                <label className="mb-2 block text-sm font-medium text-foreground">Subject</label>
+                <Input placeholder="How can we help?" />
               </div>
               <div>
-                <label className="text-sm font-medium text-white mb-2 block">Message</label>
-                <textarea
-                  className="w-full h-32 bg-surface-2 text-white rounded-md px-4 py-3 border border-hairline focus:outline-none focus:border-accent-blue resize-none"
-                  placeholder="Tell us more..."
-                />
+                <label className="mb-2 block text-sm font-medium text-foreground">Message</label>
+                <Textarea className="min-h-32" placeholder="Tell us more..." />
               </div>
-              <Button variant="primary" className="w-full px-8 py-4 text-base font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                Send Message <FiSend className="w-5 h-5" />
+              <Button type="submit" className="w-full">
+                Send Message <Send />
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10 group">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <Card>
             <CardContent className="p-6">
-              <div className="w-12 h-12 bg-accent-blue/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FiMail className="w-6 h-6 text-accent-blue" />
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
+                <Mail className="h-6 w-6 text-foreground" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Email</h3>
-              <p className="text-ink-muted">support@side.ai</p>
+              <h3 className="mb-2 text-xl font-bold text-foreground">Email</h3>
+              <p className="text-muted-foreground">support@side.ai</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-semantic-success/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-semantic-success/10 group">
+          <Card>
             <CardContent className="p-6">
-              <div className="w-12 h-12 bg-semantic-success/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FiMapPin className="w-6 h-6 text-semantic-success" />
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
+                <MapPin className="h-6 w-6 text-foreground" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Location</h3>
-              <p className="text-ink-muted">San Francisco, CA</p>
+              <h3 className="mb-2 text-xl font-bold text-foreground">Location</h3>
+              <p className="text-muted-foreground">San Francisco, CA</p>
             </CardContent>
           </Card>
         </div>

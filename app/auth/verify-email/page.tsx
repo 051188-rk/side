@@ -1,29 +1,30 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
+import { Mail } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function VerifyEmailPage() {
   return (
-    <div className="min-h-screen bg-canvas flex items-center justify-center">
-      <Card className="w-full max-w-md text-center">
-        <CardHeader>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Image src="/assets/logo_wh.png" alt="SIDE Logo" width={32} height={32} />
-            <span className="font-headline text-ink">SIDE</span>
-          </div>
-          <CardTitle className="font-card-title">Verify Your Email</CardTitle>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader className="items-center text-center">
+          <Image src="/assets/logo_wh.png" alt="Logo" width={64} height={64} className="mb-2" />
+          <CardTitle className="text-xl">Verify Your Email</CardTitle>
+          <CardDescription>
+            We&apos;ve sent a verification link to your email address. Please check your inbox and click the link to verify your account.
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="font-body text-ink-muted mb-6">
-            We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.
-          </p>
-          <Button variant="primary" className="w-full mb-4">Resend Verification Email</Button>
-          <div className="mt-6">
-            <Link href="/auth/login" className="font-body-sm text-accent-blue hover:underline">
-              Back to login
-            </Link>
+        <CardContent className="flex flex-col items-center gap-4">
+          <div className="rounded-full bg-muted p-3">
+            <Mail className="h-6 w-6 text-muted-foreground" />
           </div>
+          <Button className="w-full">Resend Verification Email</Button>
+          <Link href="/auth/login" className="text-sm text-primary hover:underline font-medium">
+            Back to login
+          </Link>
         </CardContent>
       </Card>
     </div>

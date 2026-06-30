@@ -1,37 +1,37 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function ResetPasswordPage() {
   return (
-    <div className="min-h-screen bg-canvas flex items-center justify-center">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Image src="/assets/logo_wh.png" alt="SIDE Logo" width={32} height={32} />
-            <span className="font-headline text-ink">SIDE</span>
-          </div>
-          <CardTitle className="font-card-title text-center">Set New Password</CardTitle>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader className="items-center text-center">
+          <Image src="/assets/logo_wh.png" alt="Logo" width={64} height={64} className="mb-2" />
+          <CardTitle className="text-xl">Set New Password</CardTitle>
+          <CardDescription>Enter your new password below</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">New Password</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">New Password</label>
               <Input type="password" placeholder="••••••••" />
             </div>
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">Confirm Password</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Confirm Password</label>
               <Input type="password" placeholder="••••••••" />
             </div>
-            <Button variant="primary" className="w-full">Reset Password</Button>
+            <Button type="submit" className="w-full">Reset Password</Button>
           </form>
-          <div className="mt-6 text-center">
-            <Link href="/auth/login" className="font-body-sm text-accent-blue hover:underline">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            <Link href="/auth/login" className="text-primary hover:underline font-medium">
               Back to login
             </Link>
-          </div>
+          </p>
         </CardContent>
       </Card>
     </div>

@@ -1,82 +1,85 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { FiTarget, FiUsers, FiZap, FiShield } from "react-icons/fi"
+import { Target, Zap, Shield, Users } from "lucide-react"
+
+const values = [
+  {
+    icon: Target,
+    title: "Customer-Centric",
+    description: "We believe every piece of customer feedback is valuable and deserves attention.",
+  },
+  {
+    icon: Zap,
+    title: "Data-Driven",
+    description: "Decisions should be based on comprehensive analysis, not gut feelings.",
+  },
+  {
+    icon: Shield,
+    title: "Efficiency First",
+    description: "AI should handle the tedious work so your team can focus on what matters.",
+  },
+  {
+    icon: Users,
+    title: "Transparency",
+    description: "Clear insights and explainable AI recommendations build trust.",
+  },
+]
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-canvas text-white">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-6 pt-32 pb-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">About SIDE</h1>
-        <p className="text-xl text-ink-muted mb-12 leading-relaxed">AI-powered customer feedback intelligence for modern product teams.</p>
-        
-        <Card className="mb-8 bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10">
+      <main className="mx-auto max-w-4xl px-6 pt-32 pb-20">
+        <h1 className="mb-6 text-5xl font-bold text-foreground md:text-6xl">About SIDE</h1>
+        <p className="mb-12 text-xl leading-relaxed text-muted-foreground">
+          AI-powered customer feedback intelligence for modern product teams.
+        </p>
+
+        <Card className="mb-8">
           <CardContent className="p-8">
-            <p className="text-lg text-white mb-4 leading-relaxed">
-              SIDE (Signal Desk) is an AI-powered customer feedback intelligence platform designed to help teams make sense of scattered feedback across multiple channels.
+            <p className="mb-4 text-lg leading-relaxed text-foreground">
+              SIDE (Signal Desk) is an AI-powered customer feedback intelligence platform designed to help teams make
+              sense of scattered feedback across multiple channels.
             </p>
-            <p className="text-ink-muted mb-4 leading-relaxed">
-              Our mission is to transform how product teams collect, analyze, and act on customer feedback. By leveraging advanced AI, we help you identify trends, detect duplicates, and surface actionable insights that drive product decisions.
+            <p className="mb-4 leading-relaxed text-muted-foreground">
+              Our mission is to transform how product teams collect, analyze, and act on customer feedback. By
+              leveraging advanced AI, we help you identify trends, detect duplicates, and surface actionable insights
+              that drive product decisions.
             </p>
-            <p className="text-ink-muted leading-relaxed">
-              Founded in 2024, SIDE is built for modern product teams who want to move beyond simple feedback collection to intelligent feedback analysis.
+            <p className="leading-relaxed text-muted-foreground">
+              Founded in 2024, SIDE is built for modern product teams who want to move beyond simple feedback
+              collection to intelligent feedback analysis.
             </p>
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiTarget className="w-7 h-7 text-accent-blue" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Customer-Centric</h3>
-              <p className="text-ink-muted leading-relaxed">We believe every piece of customer feedback is valuable and deserves attention.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-semantic-success/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-semantic-success/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-semantic-success/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiZap className="w-7 h-7 text-semantic-success" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Data-Driven</h3>
-              <p className="text-ink-muted leading-relaxed">Decisions should be based on comprehensive analysis, not gut feelings.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-semantic-warning/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-semantic-warning/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-semantic-warning/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiShield className="w-7 h-7 text-semantic-warning" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Efficiency First</h3>
-              <p className="text-ink-muted leading-relaxed">AI should handle the tedious work so your team can focus on what matters.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-surface-1 to-surface-2 border border-hairline hover:border-accent-blue/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/10 group">
-            <CardContent className="p-8">
-              <div className="w-14 h-14 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FiUsers className="w-7 h-7 text-accent-blue" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Transparency</h3>
-              <p className="text-ink-muted leading-relaxed">Clear insights and explainable AI recommendations build trust.</p>
-            </CardContent>
-          </Card>
+        <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {values.map((value) => (
+            <Card key={value.title}>
+              <CardContent className="p-8">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
+                  <value.icon className="h-7 w-7 text-foreground" />
+                </div>
+                <h3 className="mb-3 text-2xl font-bold text-foreground">{value.title}</h3>
+                <p className="leading-relaxed text-muted-foreground">{value.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        <Card className="bg-gradient-to-r from-accent-blue/20 to-semantic-success/20 border border-hairline hover:border-accent-blue/30 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+        <Card className="bg-muted">
           <CardContent className="p-12 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Get in Touch</h2>
-            <p className="text-ink-muted mb-8 max-w-xl mx-auto">Have questions or want to learn more? We'd love to hear from you.</p>
+            <h2 className="mb-4 text-3xl font-bold text-foreground">Get in Touch</h2>
+            <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
+              Have questions or want to learn more? We&apos;d love to hear from you.
+            </p>
             <Link href="/contact">
-              <Button variant="primary" className="px-8 py-4 text-base font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105">Contact Us</Button>
+              <Button size="lg">Contact Us</Button>
             </Link>
           </CardContent>
         </Card>

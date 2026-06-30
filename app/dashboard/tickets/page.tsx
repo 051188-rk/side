@@ -1,9 +1,10 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Badge, PriorityBadge, StatusBadge } from "@/components/ui/badge"
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { PriorityBadge, StatusBadge } from "@/components/ui/badge"
 import { mockTickets } from "@/lib/data/mock-data"
 import { formatRelativeTime } from "@/lib/utils"
 import { Plus, MoreHorizontal } from "lucide-react"
@@ -13,11 +14,11 @@ export default function TicketsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display-lg text-ink mb-2">Tickets</h1>
-          <p className="font-body text-ink-muted">Track and manage support tickets</p>
+          <h1 className="text-2xl font-bold text-foreground">Tickets</h1>
+          <p className="text-sm text-muted-foreground">Track and manage support tickets</p>
         </div>
-        <Button variant="primary">
-          <Plus className="w-4 h-4 mr-2" />
+        <Button>
+          <Plus className="h-4 w-4 mr-2" />
           New Ticket
         </Button>
       </div>
@@ -34,18 +35,18 @@ export default function TicketsPage() {
                 <TableHead>Assigned To</TableHead>
                 <TableHead>Affected Users</TableHead>
                 <TableHead>Created</TableHead>
-                <TableHead></TableHead>
+                <TableHead className="w-10" />
               </TableRow>
             </TableHeader>
             <TableBody>
               {mockTickets.map((ticket) => (
                 <TableRow key={ticket.id}>
                   <TableCell>
-                    <span className="font-body-sm text-ink-muted">{ticket.id}</span>
+                    <span className="text-xs text-muted-foreground font-mono">{ticket.id}</span>
                   </TableCell>
                   <TableCell>
-                    <div className="font-body-sm">{ticket.title}</div>
-                    <div className="font-caption text-ink-muted">{ticket.description.slice(0, 50)}...</div>
+                    <div className="text-sm text-foreground">{ticket.title}</div>
+                    <div className="text-xs text-muted-foreground line-clamp-1 max-w-xs">{ticket.description.slice(0, 50)}...</div>
                   </TableCell>
                   <TableCell>
                     <PriorityBadge priority={ticket.priority} />
@@ -54,18 +55,18 @@ export default function TicketsPage() {
                     <StatusBadge status={ticket.status} />
                   </TableCell>
                   <TableCell>
-                    <span className="font-body-sm">{ticket.assignedTo || "Unassigned"}</span>
+                    <span className="text-sm text-foreground">{ticket.assignedTo || "Unassigned"}</span>
                   </TableCell>
                   <TableCell>
-                    <span className="font-body-sm">{ticket.affectedUsers}</span>
+                    <span className="text-sm text-foreground">{ticket.affectedUsers}</span>
                   </TableCell>
                   <TableCell>
-                    <span className="font-caption text-ink-muted">{formatRelativeTime(ticket.createdAt)}</span>
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">{formatRelativeTime(ticket.createdAt)}</span>
                   </TableCell>
                   <TableCell>
-                    <button className="p-1 hover:bg-surface-1 rounded">
-                      <MoreHorizontal className="w-4 h-4 text-ink-muted" />
-                    </button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <MoreHorizontal className="h-4 w-4" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

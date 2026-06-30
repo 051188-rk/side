@@ -1,69 +1,86 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { mockInsights } from "@/lib/data/mock-data"
-import { formatRelativeTime } from "@/lib/utils"
+import { formatRelativeTime, cn } from "@/lib/utils"
 import { Brain, TrendingUp, Lightbulb, AlertCircle } from "lucide-react"
+
+const insightIcons = {
+  trending_bug: AlertCircle,
+  feature_request: Lightbulb,
+  pain_point: Brain,
+} as const
 
 export default function InsightsPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display-lg text-ink mb-2">AI Insights</h1>
-        <p className="font-body text-ink-muted">AI-generated insights from your feedback data</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-foreground text-2xl font-semibold mb-1">AI Insights</h1>
+          <p className="text-muted-foreground">AI-generated insights from your feedback data</p>
+        </div>
+        <Button variant="outline" size="sm">
+          <Brain className="w-4 h-4" />
+          Generate Insights
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {mockInsights.map((insight) => {
-          const icon = insight.type === "trending_bug" ? AlertCircle : insight.type === "feature_request" ? Lightbulb : Brain
-          const trendColor = insight.trend === "increasing" ? "text-semantic-error" : insight.trend === "decreasing" ? "text-semantic-success" : "text-ink-muted"
-          
+          const Icon = insightIcons[insight.type as keyof typeof insightIcons] || Brain
+
           return (
             <Card key={insight.id}>
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
-                  <div className="p-2 bg-surface-2 rounded-lg">
-                    <icon className="w-5 h-5 text-ink" />
+                  <div className="p-2 bg-muted rounded-lg">
+                    <Icon className="w-5 h-5 text-foreground" />
                   </div>
-                  <Badge variant="default">{insight.type.replace("_", " ")}</Badge>
+                  <Badge variant="secondary" className="capitalize">{insight.type.replace("_", " ")}</Badge>
                 </div>
-                <CardTitle className="font-card-title">{insight.title}</CardTitle>
+                <CardTitle>{insight.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="font-body-sm text-ink-muted mb-4">{insight.description}</p>
-                
+                <p className="text-sm text-muted-foreground mb-4">{insight.description}</p>
+
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-caption text-ink-muted">Affected Users</span>
-                    <span className="font-body-sm text-ink">{insight.affectedUsers}</span>
+                    <span className="text-xs text-muted-foreground">Affected Users</span>
+                    <span className="text-sm text-foreground">{insight.affectedUsers}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-caption text-ink-muted">Frequency</span>
-                    <span className="font-body-sm text-ink">{insight.frequency}</span>
+                    <span className="text-xs text-muted-foreground">Frequency</span>
+                    <span className="text-sm text-foreground">{insight.frequency}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-caption text-ink-muted">Trend</span>
-                    <span className={`font-body-sm ${trendColor} flex items-center gap-1`}>
+                    <span className="text-xs text-muted-foreground">Trend</span>
+                    <span className={cn(
+                      "text-sm flex items-center gap-1",
+                      insight.trend === "increasing" && "text-destructive",
+                      insight.trend === "decreasing" && "text-emerald-500",
+                      insight.trend === "stable" && "text-muted-foreground"
+                    )}>
                       <TrendingUp className="w-4 h-4" />
                       {insight.trend}
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-hairline-soft">
-                  <p className="font-caption text-ink-muted mb-2">Suggested Actions</p>
+                <div className="mt-4 pt-4 border-t border-border">
+                  <p className="text-xs text-muted-foreground mb-2">Suggested Actions</p>
                   <ul className="space-y-1">
                     {insight.suggestedActions.slice(0, 2).map((action, index) => (
-                      <li key={index} className="font-body-sm text-ink flex items-start gap-2">
-                        <span className="text-accent-blue">•</span>
+                      <li key={index} className="text-sm text-foreground flex items-start gap-2">
+                        <span className="text-primary">•</span>
                         {action}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <p className="font-caption text-ink-muted mt-4">{formatRelativeTime(insight.createdAt)}</p>
+                <p className="text-xs text-muted-foreground mt-4">{formatRelativeTime(insight.createdAt)}</p>
               </CardContent>
             </Card>
           )

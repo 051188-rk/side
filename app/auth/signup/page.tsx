@@ -1,57 +1,55 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-canvas flex items-center justify-center">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Image src="/assets/logo_wh.png" alt="SIDE Logo" width={32} height={32} />
-            <span className="font-headline text-ink">SIDE</span>
-          </div>
-          <CardTitle className="font-card-title text-center">Create Account</CardTitle>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader className="items-center text-center">
+          <Image src="/assets/logo_wh.png" alt="Logo" width={64} height={64} className="mb-2" />
+          <CardTitle className="text-xl">Create Account</CardTitle>
+          <CardDescription>Get started with your free account</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">Full Name</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Full Name</label>
               <Input placeholder="John Doe" />
             </div>
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">Email</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Email</label>
               <Input type="email" placeholder="your@email.com" />
             </div>
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">Password</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Password</label>
               <Input type="password" placeholder="••••••••" />
             </div>
-            <div>
-              <label className="font-body-sm text-ink mb-2 block">Confirm Password</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Confirm Password</label>
               <Input type="password" placeholder="••••••••" />
             </div>
-            <div className="flex items-center gap-2">
-              <input type="checkbox" className="w-4 h-4" />
-              <label className="font-body-sm text-ink-muted">
+            <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
+              <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-border bg-muted text-primary accent-primary" />
+              <span>
                 I agree to the{" "}
-                <Link href="/documentation" className="text-accent-blue hover:underline">
+                <Link href="/documentation" className="text-primary hover:underline">
                   Terms of Service
                 </Link>
-              </label>
-            </div>
-            <Button variant="primary" className="w-full">Create Account</Button>
+              </span>
+            </label>
+            <Button type="submit" className="w-full">Create Account</Button>
           </form>
-          <div className="mt-6 text-center">
-            <p className="font-body-sm text-ink-muted">
-              Already have an account?{" "}
-              <Link href="/auth/login" className="text-accent-blue hover:underline">
-                Sign in
-              </Link>
-            </p>
-          </div>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Already have an account?{" "}
+            <Link href="/auth/login" className="text-primary hover:underline font-medium">
+              Sign in
+            </Link>
+          </p>
         </CardContent>
       </Card>
     </div>

@@ -1,18 +1,19 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Badge, StatusBadge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { Progress } from "@/components/ui/progress"
 import { mockClusters } from "@/lib/data/mock-data"
-import { formatRelativeTime } from "@/lib/utils"
+import { formatRelativeTime, cn } from "@/lib/utils"
 import { GitMerge } from "lucide-react"
 
 export default function ClustersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-display-lg text-ink mb-2">Duplicate Clusters</h1>
-        <p className="font-body text-ink-muted">AI-detected duplicate feedback grouped by similarity</p>
+        <h1 className="text-foreground text-2xl font-semibold mb-1">Duplicate Clusters</h1>
+        <p className="text-muted-foreground">AI-detected duplicate feedback grouped by similarity</p>
       </div>
 
       <Card>
@@ -33,33 +34,34 @@ export default function ClustersPage() {
               {mockClusters.map((cluster) => (
                 <TableRow key={cluster.id}>
                   <TableCell>
-                    <span className="font-body-sm text-ink-muted">{cluster.id}</span>
+                    <span className="text-sm text-muted-foreground">{cluster.id}</span>
                   </TableCell>
                   <TableCell>
-                    <div className="font-body-sm">{cluster.rootCause}</div>
+                    <div className="text-sm">{cluster.rootCause}</div>
                   </TableCell>
                   <TableCell>
-                    <span className="font-body-sm">{cluster.feedbackIds.length}</span>
+                    <span className="text-sm">{cluster.feedbackIds.length}</span>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <div className="w-16 h-2 bg-surface-2 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-accent-blue" 
-                          style={{ width: `${cluster.similarityScore * 100}%` }}
-                        />
-                      </div>
-                      <span className="font-caption text-ink-muted">{Math.round(cluster.similarityScore * 100)}%</span>
+                      <Progress value={cluster.similarityScore * 100} className="w-16" />
+                      <span className="text-xs text-muted-foreground">{Math.round(cluster.similarityScore * 100)}%</span>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <span className="font-body-sm">{cluster.affectedUsers}</span>
+                    <span className="text-sm">{cluster.affectedUsers}</span>
                   </TableCell>
                   <TableCell>
-                    <StatusBadge status={cluster.status} />
+                    <Badge className={cn(
+                      "capitalize",
+                      cluster.status === "open" && "bg-destructive/10 text-destructive hover:bg-destructive/20",
+                      cluster.status === "resolved" && "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20"
+                    )}>
+                      {cluster.status}
+                    </Badge>
                   </TableCell>
                   <TableCell>
-                    <span className="font-caption text-ink-muted">{formatRelativeTime(cluster.createdAt)}</span>
+                    <span className="text-xs text-muted-foreground">{formatRelativeTime(cluster.createdAt)}</span>
                   </TableCell>
                 </TableRow>
               ))}

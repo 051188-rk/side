@@ -1,21 +1,45 @@
-"use client"
-
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Badge, PriorityBadge, StatusBadge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
 import { mockTickets } from "@/lib/data/mock-data"
 import { formatDateTime } from "@/lib/utils"
-import { ArrowLeft, MessageSquare, Paperclip, Clock, User } from "lucide-react"
+import { ArrowLeft, MessageSquare, Paperclip, Clock, User, ChevronLeft } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export default function TicketDetailPage({ params }: { params: { id: string } }) {
-  const ticket = mockTickets.find(t => t.id === params.id)
+const priorityConfig: Record<string, { variant: "destructive" | "default" | "secondary" | "outline"; label: string }> = {
+  critical: { variant: "destructive", label: "Critical" },
+  high: { variant: "default", label: "High" },
+  medium: { variant: "secondary", label: "Medium" },
+  low: { variant: "outline", label: "Low" },
+}
+
+const statusConfig: Record<string, { variant: "default" | "secondary" | "outline"; label: string }> = {
+  open: { variant: "default", label: "Open" },
+  in_progress: { variant: "secondary", label: "In Progress" },
+  closed: { variant: "outline", label: "Closed" },
+}
+
+function PriorityBadge({ priority }: { priority: string }) {
+  const config = priorityConfig[priority] || { variant: "outline" as const, label: priority }
+  return <Badge variant={config.variant}>{config.label}</Badge>
+}
+
+function StatusBadge({ status }: { status: string }) {
+  const config = statusConfig[status] || { variant: "outline" as const, label: status }
+  return <Badge variant={config.variant}>{config.label}</Badge>
+}
+
+export default async function TicketDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const ticket = mockTickets.find(t => t.id === id)
 
   if (!ticket) {
     return (
       <div className="flex items-center justify-center h-96">
-        <p className="font-body text-ink-muted">Ticket not found</p>
+        <p className="text-sm text-muted-foreground">Ticket not found</p>
       </div>
     )
   }
@@ -24,14 +48,14 @@ export default function TicketDetailPage({ params }: { params: { id: string } })
     <div className="space-y-6">
       <div className="flex items-center gap-4">
         <Link href="/dashboard/tickets">
-          <Button variant="tertiary" size="sm">
+          <Button variant="ghost" size="sm">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back
           </Button>
         </Link>
         <div className="flex-1">
-          <h1 className="font-display-lg text-ink">{ticket.title}</h1>
-          <p className="font-body text-ink-muted">{ticket.id}</p>
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">{ticket.title}</h1>
+          <p className="text-sm text-muted-foreground">{ticket.id}</p>
         </div>
         <div className="flex gap-2">
           <PriorityBadge priority={ticket.priority} />
@@ -43,26 +67,26 @@ export default function TicketDetailPage({ params }: { params: { id: string } })
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="font-card-title">Description</CardTitle>
+              <CardTitle>Description</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="font-body text-ink">{ticket.description}</p>
+              <p className="text-sm text-foreground">{ticket.description}</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="font-card-title">Reproduction Steps</CardTitle>
+              <CardTitle>Reproduction Steps</CardTitle>
             </CardHeader>
             <CardContent>
               {ticket.reproductionSteps && ticket.reproductionSteps.length > 0 ? (
                 <ol className="list-decimal list-inside space-y-2">
                   {ticket.reproductionSteps.map((step, index) => (
-                    <li key={index} className="font-body-sm text-ink">{step}</li>
+                    <li key={index} className="text-sm text-foreground">{step}</li>
                   ))}
                 </ol>
               ) : (
-                <p className="font-body-sm text-ink-muted">No reproduction steps provided</p>
+                <p className="text-sm text-muted-foreground">No reproduction steps provided</p>
               )}
             </CardContent>
           </Card>
@@ -70,7 +94,7 @@ export default function TicketDetailPage({ params }: { params: { id: string } })
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="font-card-title">Comments</CardTitle>
+                <CardTitle>Comments</CardTitle>
                 <Button variant="secondary" size="sm">
                   <MessageSquare className="w-4 h-4 mr-2" />
                   Add Comment
@@ -81,21 +105,21 @@ export default function TicketDetailPage({ params }: { params: { id: string } })
               <div className="space-y-4">
                 {ticket.comments.length > 0 ? (
                   ticket.comments.map((comment) => (
-                    <div key={comment.id} className="flex gap-3 pb-4 border-b border-hairline-soft last:border-0 last:pb-0">
-                      <div className="w-8 h-8 bg-surface-2 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="font-caption text-ink-muted">{comment.authorName.charAt(0)}</span>
-                      </div>
+                    <div key={comment.id} className="flex gap-3 pb-4 border-b border-border last:border-0 last:pb-0">
+                      <Avatar size="sm">
+                        <AvatarFallback>{comment.authorName.charAt(0)}</AvatarFallback>
+                      </Avatar>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-body-sm text-ink">{comment.authorName}</span>
-                          <span className="font-caption text-ink-muted">{formatDateTime(comment.createdAt)}</span>
+                          <span className="text-sm text-foreground">{comment.authorName}</span>
+                          <span className="text-xs text-muted-foreground">{formatDateTime(comment.createdAt)}</span>
                         </div>
-                        <p className="font-body-sm text-ink">{comment.content}</p>
+                        <p className="text-sm text-foreground">{comment.content}</p>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <p className="font-body-sm text-ink-muted">No comments yet</p>
+                  <p className="text-sm text-muted-foreground">No comments yet</p>
                 )}
               </div>
             </CardContent>
@@ -105,39 +129,39 @@ export default function TicketDetailPage({ params }: { params: { id: string } })
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="font-card-title">Details</CardTitle>
+              <CardTitle>Details</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="font-caption text-ink-muted mb-1">Created</p>
-                <p className="font-body-sm text-ink">{formatDateTime(ticket.createdAt)}</p>
+                <p className="text-xs text-muted-foreground mb-1">Created</p>
+                <p className="text-sm text-foreground">{formatDateTime(ticket.createdAt)}</p>
               </div>
               <div>
-                <p className="font-caption text-ink-muted mb-1">Updated</p>
-                <p className="font-body-sm text-ink">{formatDateTime(ticket.updatedAt)}</p>
+                <p className="text-xs text-muted-foreground mb-1">Updated</p>
+                <p className="text-sm text-foreground">{formatDateTime(ticket.updatedAt)}</p>
               </div>
               <div>
-                <p className="font-caption text-ink-muted mb-1">Assigned To</p>
-                <p className="font-body-sm text-ink">{ticket.assignedTo || "Unassigned"}</p>
+                <p className="text-xs text-muted-foreground mb-1">Assigned To</p>
+                <p className="text-sm text-foreground">{ticket.assignedTo || "Unassigned"}</p>
               </div>
               <div>
-                <p className="font-caption text-ink-muted mb-1">Suggested Owner</p>
-                <p className="font-body-sm text-ink">{ticket.suggestedOwner || "N/A"}</p>
+                <p className="text-xs text-muted-foreground mb-1">Suggested Owner</p>
+                <p className="text-sm text-foreground">{ticket.suggestedOwner || "N/A"}</p>
               </div>
               <div>
-                <p className="font-caption text-ink-muted mb-1">Suggested Fix Area</p>
-                <p className="font-body-sm text-ink">{ticket.suggestedFixArea || "N/A"}</p>
+                <p className="text-xs text-muted-foreground mb-1">Suggested Fix Area</p>
+                <p className="text-sm text-foreground">{ticket.suggestedFixArea || "N/A"}</p>
               </div>
               <div>
-                <p className="font-caption text-ink-muted mb-1">Affected Users</p>
-                <p className="font-body-sm text-ink">{ticket.affectedUsers}</p>
+                <p className="text-xs text-muted-foreground mb-1">Affected Users</p>
+                <p className="text-sm text-foreground">{ticket.affectedUsers}</p>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="font-card-title">Quick Actions</CardTitle>
+              <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <Button variant="secondary" className="w-full justify-start">

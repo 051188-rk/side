@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -11,42 +11,93 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Strict Dark Mode - Grayscale Only
-        background: "#000000",
-        surface: "#0A0A0A",
-        border: "#1A1A1A",
-        "text-primary": "#FFFFFF",
-        "text-secondary": "#8A8A8A",
-        "text-tertiary": "#4A4A4A",
-      },
-      fontFamily: {
-        sans: ["var(--font-plus-jakarta-sans)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-      },
-      fontSize: {
-        "xs": ["12px", { lineHeight: "1.4", letterSpacing: "0", fontWeight: "300" }],
-        "sm": ["13px", { lineHeight: "1.4", letterSpacing: "0", fontWeight: "300" }],
-        "base": ["13px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
-        "lg": ["14px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
-        "xl": ["16px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
-        "2xl": ["18px", { lineHeight: "1.4", letterSpacing: "0", fontWeight: "500" }],
-        "3xl": ["24px", { lineHeight: "1.3", letterSpacing: "-0.5px", fontWeight: "500" }],
-        "4xl": ["32px", { lineHeight: "1.2", letterSpacing: "-1px", fontWeight: "500" }],
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: {
+            DEFAULT: "hsl(var(--sidebar-primary))",
+            foreground: "hsl(var(--sidebar-primary-foreground))",
+          },
+          accent: {
+            DEFAULT: "hsl(var(--sidebar-accent))",
+            foreground: "hsl(var(--sidebar-accent-foreground))",
+          },
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
       borderRadius: {
-        none: "0px",
-        sm: "2px",
-        DEFAULT: "0px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      spacing: {
-        "1": "4px",
-        "2": "8px",
-        "3": "16px",
-        "4": "24px",
-        "5": "32px",
-        "6": "48px",
-        "7": "64px",
-        "8": "96px",
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "collapsible-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-collapsible-content-height)" },
+        },
+        "collapsible-up": {
+          from: { height: "var(--radix-collapsible-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "collapsible-down": "collapsible-down 0.2s ease-out",
+        "collapsible-up": "collapsible-up 0.2s ease-out",
       },
     },
   },
