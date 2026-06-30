@@ -59,7 +59,7 @@ export function Sidebar() {
           <div className="flex items-center justify-between p-4 border-b border-border">
             {!collapsed && (
               <Link href="/dashboard">
-                <img src="/assets/logo_wh.png" alt="SIDE Logo" width={40} height={40} />
+                <img src="/assets/logo_wh.png" alt="Logo" width={64} height={64} />
               </Link>
             )}
             <button

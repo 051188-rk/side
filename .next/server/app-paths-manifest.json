@@ -1,4 +1,9 @@
 {
-  "/landing/page": "app/landing/page.js",
-  "/dashboard/admin/page": "app/dashboard/admin/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/memory/page": "app/dashboard/memory/page.js",
+  "/dashboard/insights/page": "app/dashboard/insights/page.js",
+  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
+  "/dashboard/feedback/page": "app/dashboard/feedback/page.js",
+  "/dashboard/clusters/page": "app/dashboard/clusters/page.js",
+  "/dashboard/tickets/page": "app/dashboard/tickets/page.js"
 }

@@ -9,7 +9,7 @@ export function Card({ className, variant = "default", ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-surface p-5 border border-border",
+        "bg-surface p-5 border border-border rounded-xl",
         {
           "bg-surface": variant === "surface-2",
         },
