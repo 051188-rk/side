@@ -1,0 +1,1 @@
+![Logo](public/assets/logo_wh.png)
