@@ -37,51 +37,51 @@ const auditLogs = [
 
 export default function AdminPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Admin</h1>
-        <p className="text-sm text-muted-foreground">Manage users, roles, and permissions</p>
+    <div className="space-y-8 w-full">
+      <div className="pt-2">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Admin</h1>
+        <p className="text-sm text-muted-foreground mt-2">Manage users, roles, and permissions</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-muted-foreground" />
-                <CardTitle>Users</CardTitle>
+                <CardTitle className="text-base font-semibold">Users</CardTitle>
               </div>
-              <Button>Add User</Button>
+              <Button size="sm" className="h-8 text-xs">Add User</Button>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0 overflow-x-auto px-6 py-4">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Last Active</TableHead>
-                  <TableHead></TableHead>
+                <TableRow className="border-t border-border">
+                  <TableHead className="text-xs font-medium h-10 px-4">Name</TableHead>
+                  <TableHead className="text-xs font-medium h-10 px-4">Email</TableHead>
+                  <TableHead className="text-xs font-medium h-10 px-4">Role</TableHead>
+                  <TableHead className="text-xs font-medium h-10 px-4">Last Active</TableHead>
+                  <TableHead className="text-xs font-medium h-10 px-4"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {mockUsers.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell>
-                      <span className="text-sm">{user.name}</span>
+                  <TableRow key={user.id} className="border-b border-border">
+                    <TableCell className="py-3 px-4">
+                      <span className="text-sm font-medium text-foreground">{user.name}</span>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="py-3 px-4">
                       <span className="text-sm text-muted-foreground">{user.email}</span>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant={roleVariant[user.role] || "default"}>{user.role}</Badge>
+                    <TableCell className="py-3 px-4">
+                      <Badge variant={roleVariant[user.role] || "default"} className="text-xs capitalize">{user.role}</Badge>
                     </TableCell>
-                    <TableCell>
-                      <span className="text-xs text-muted-foreground">{formatRelativeTime(user.lastActive)}</span>
+                    <TableCell className="py-3 px-4">
+                      <span className="text-xs text-muted-foreground whitespace-nowrap">{formatRelativeTime(user.lastActive)}</span>
                     </TableCell>
-                    <TableCell>
-                      <Button variant="ghost">Edit</Button>
+                    <TableCell className="py-3 px-4">
+                      <Button variant="ghost" size="sm" className="h-7 text-xs">Edit</Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -90,63 +90,63 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-muted-foreground" />
-              <CardTitle>Roles & Permissions</CardTitle>
+              <CardTitle className="text-base font-semibold">Roles & Permissions</CardTitle>
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="px-6 py-4">
+            <div className="space-y-3">
               {roles.map((role) => (
-                <div key={role.name} className="p-4 bg-muted rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-foreground">{role.name}</span>
-                    <Badge variant={permissionVariant[role.permission] || "default"}>{role.permission}</Badge>
+                <div key={role.name} className="p-4 bg-muted rounded-md border border-border">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="text-sm font-medium text-foreground">{role.name}</span>
+                    <Badge variant={permissionVariant[role.permission] || "default"} className="text-xs">{role.permission}</Badge>
                   </div>
-                  <p className="text-xs text-muted-foreground">{role.description}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{role.description}</p>
                 </div>
-              ))}
+              ))}}
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
+      <Card className="border border-border">
+        <CardHeader className="pb-4">
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-muted-foreground" />
-            <CardTitle>Audit Logs</CardTitle>
+            <CardTitle className="text-base font-semibold">Audit Logs</CardTitle>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0 overflow-x-auto px-6 py-4">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Timestamp</TableHead>
-                <TableHead>User</TableHead>
-                <TableHead>Action</TableHead>
-                <TableHead>Entity</TableHead>
-                <TableHead>Details</TableHead>
+              <TableRow className="border-t border-border">
+                <TableHead className="text-xs font-medium h-10 px-4">Timestamp</TableHead>
+                <TableHead className="text-xs font-medium h-10 px-4">User</TableHead>
+                <TableHead className="text-xs font-medium h-10 px-4">Action</TableHead>
+                <TableHead className="text-xs font-medium h-10 px-4">Entity</TableHead>
+                <TableHead className="text-xs font-medium h-10 px-4">Details</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {auditLogs.map((log, i) => (
-                <TableRow key={i}>
-                  <TableCell>
-                    <span className="text-xs text-muted-foreground">{log.timestamp}</span>
+                <TableRow key={i} className="border-b border-border">
+                  <TableCell className="py-3 px-4">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">{log.timestamp}</span>
                   </TableCell>
-                  <TableCell>
-                    <span className="text-sm">{log.user}</span>
+                  <TableCell className="py-3 px-4">
+                    <span className="text-sm font-medium text-foreground">{log.user}</span>
                   </TableCell>
-                  <TableCell>
-                    <span className="text-sm">{log.action}</span>
+                  <TableCell className="py-3 px-4">
+                    <span className="text-sm font-medium text-foreground">{log.action}</span>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="py-3 px-4">
                     <span className="text-sm text-muted-foreground">{log.entity}</span>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="py-3 px-4">
                     <span className="text-sm text-muted-foreground">{log.details}</span>
                   </TableCell>
                 </TableRow>

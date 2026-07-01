@@ -1,13 +1,13 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/frontend/components/ui/card"
-import { Badge } from "@/frontend/components/ui/badge"
-import { Button } from "@/frontend/components/ui/button"
-import { Avatar, AvatarFallback } from "@/frontend/components/ui/avatar"
-import { Separator } from "@/frontend/components/ui/separator"
-import { mockTickets } from "@/frontend/lib/data/mock-data"
-import { formatDateTime } from "@/frontend/lib/utils"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
+import { mockTickets } from "@/lib/data/mock-data"
+import { formatDateTime } from "@/lib/utils"
 import { ArrowLeft, MessageSquare, Paperclip, Clock, User, ChevronLeft } from "lucide-react"
 import Link from "next/link"
-import { cn } from "@/frontend/lib/utils"
+import { cn } from "@/lib/utils"
 
 const priorityConfig: Record<string, { variant: "destructive" | "default" | "secondary" | "outline"; label: string }> = {
   critical: { variant: "destructive", label: "Critical" },

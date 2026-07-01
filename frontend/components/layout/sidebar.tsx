@@ -24,6 +24,7 @@ import {
   Menu,
   PanelLeftClose,
   PanelLeftOpen,
+  Plug,
 } from "lucide-react"
 
 const navigation = [
@@ -35,7 +36,7 @@ const navigation = [
   { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
   { name: "Memory", href: "/dashboard/memory", icon: History },
   { name: "Channels", href: "/dashboard/channels", icon: Zap },
-  { name: "Integrations", href: "/dashboard/integrations", icon: Settings },
+  { name: "Integrations", href: "/dashboard/integrations", icon: Plug },
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
   { name: "Admin", href: "/dashboard/admin", icon: Users },
 ]

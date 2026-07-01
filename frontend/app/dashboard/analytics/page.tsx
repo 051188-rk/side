@@ -9,16 +9,16 @@ const COLORS = ["#7b42bc", "#ffcf25", "#14c6cb", "#1868f2", "#00ca8e", "#e62b1e"
 
 export default function AnalyticsPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-foreground text-2xl font-semibold mb-1">Analytics</h1>
-        <p className="text-muted-foreground">Track feedback trends and metrics</p>
+    <div className="space-y-8 w-full">
+      <div className="pt-2">
+        <h1 className="text-foreground text-3xl font-bold">Analytics</h1>
+        <p className="text-muted-foreground mt-2">Track feedback trends and metrics</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Sentiment Trend</CardTitle>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Sentiment Trend</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -39,9 +39,9 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Channel Distribution</CardTitle>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Channel Distribution</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -69,9 +69,9 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Feedback Volume</CardTitle>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Feedback Volume</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -89,9 +89,9 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Ticket Growth</CardTitle>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Ticket Growth</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -112,11 +112,11 @@ export default function AnalyticsPage() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Priority Distribution</CardTitle>
+      <Card className="border border-border">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base font-semibold">Priority Distribution</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-6 py-4">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={mockAnalytics.priorityDistribution} layout="horizontal">
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -126,7 +126,7 @@ export default function AnalyticsPage() {
                 contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius)' }}
                 itemStyle={{ color: 'hsl(var(--foreground))' }}
               />
-              <Bar dataKey="count" fill="#14c6cb" />
+              <Bar dataKey="count" fill="#14c6cb" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>

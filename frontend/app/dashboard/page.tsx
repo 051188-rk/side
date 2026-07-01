@@ -22,34 +22,34 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Dashboard Overview</h1>
-        <p className="text-sm text-muted-foreground">Monitor your feedback intelligence at a glance</p>
+    <div className="space-y-8 w-full">
+      <div className="pt-2">
+        <h1 className="text-3xl font-bold text-foreground">Dashboard Overview</h1>
+        <p className="text-sm text-muted-foreground mt-2">Monitor your feedback intelligence at a glance</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {statCards.map((card) => (
-          <Card key={card.label}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <Card key={card.label} className="border border-border hover:shadow-md transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
               <CardTitle className="text-sm font-medium text-muted-foreground">{card.label}</CardTitle>
-              <card.icon className="h-4 w-4 text-muted-foreground" />
+              <card.icon className="h-5 w-5 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">{card.value}</div>
+              <div className="text-2xl font-bold text-foreground">{card.value}</div>
               {card.trend ? (
-                <div className="flex items-center gap-1 mt-1.5">
+                <div className="flex items-center gap-1 mt-2">
                   {card.trend.up
                     ? <TrendingUp className="h-3 w-3 text-emerald-500" />
                     : <TrendingDown className="h-3 w-3 text-red-500" />
                   }
-                  <span className={`text-xs ${card.trend.up ? "text-emerald-500" : "text-red-500"}`}>
+                  <span className={`text-xs font-medium ${card.trend.up ? "text-emerald-500" : "text-red-500"}`}>
                     {card.trend.value}
                   </span>
                   <span className="text-xs text-muted-foreground">{card.trend.label}</span>
                 </div>
               ) : card.meta ? (
-                <div className="flex items-center gap-1 mt-1.5">
+                <div className="flex items-center gap-1.5 mt-2">
                   <card.meta.icon className="h-3 w-3 text-muted-foreground" />
                   <span className="text-xs text-muted-foreground">{card.meta.value}</span>
                 </div>
@@ -59,19 +59,19 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Recent Feedback</CardTitle>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Recent Feedback</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-0">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-xs">Customer</TableHead>
-                  <TableHead className="text-xs">Summary</TableHead>
-                  <TableHead className="text-xs">Priority</TableHead>
-                  <TableHead className="text-xs">Time</TableHead>
+                  <TableHead className="text-xs font-medium">Customer</TableHead>
+                  <TableHead className="text-xs font-medium">Summary</TableHead>
+                  <TableHead className="text-xs font-medium">Priority</TableHead>
+                  <TableHead className="text-xs font-medium">Time</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -99,20 +99,20 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Recent Activity</CardTitle>
+        <Card className="border border-border">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold">Recent Activity</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-0">
+            <div className="space-y-3">
               {mockActivities.slice(0, 5).map((activity) => (
-                <div key={activity.id} className="flex items-start gap-3 pb-4 border-b border-border last:border-0 last:pb-0">
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback>{activity.userName.charAt(0)}</AvatarFallback>
+                <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-border last:border-0 last:pb-0">
+                  <Avatar className="h-8 w-8 shrink-0">
+                    <AvatarFallback className="text-xs font-medium">{activity.userName.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-foreground">{activity.description}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{formatRelativeTime(activity.createdAt)}</p>
+                    <p className="text-sm font-medium text-foreground">{activity.description}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{formatRelativeTime(activity.createdAt)}</p>
                   </div>
                 </div>
               ))}
@@ -121,31 +121,31 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-sm font-medium">AI Summary</CardTitle>
+      <Card className="border border-border">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base font-semibold">AI Summary</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
             <li className="flex items-start gap-3">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <div>
-                <p className="text-sm text-foreground">Dashboard performance issues are trending upward with 25 affected users</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Recommended: Investigate database queries and implement caching</p>
+              <span className="mt-2 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground">Dashboard performance issues are trending upward with 25 affected users</p>
+                <p className="text-xs text-muted-foreground mt-1">Recommended: Investigate database queries and implement caching</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <div>
-                <p className="text-sm text-foreground">High demand for dark mode feature across mobile platforms</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Recommended: Add to Q1 roadmap</p>
+              <span className="mt-2 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground">High demand for dark mode feature across mobile platforms</p>
+                <p className="text-xs text-muted-foreground mt-1">Recommended: Add to Q1 roadmap</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <div>
-                <p className="text-sm text-foreground">Duplicate detection feature has reduced manual triage time by 40%</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Positive impact on team productivity</p>
+              <span className="mt-2 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground">Duplicate detection feature has reduced manual triage time by 40%</p>
+                <p className="text-xs text-muted-foreground mt-1">Positive impact on team productivity</p>
               </div>
             </li>
           </ul>

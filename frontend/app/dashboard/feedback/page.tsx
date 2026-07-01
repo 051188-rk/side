@@ -36,18 +36,18 @@ export default function FeedbackPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Feedback Inbox</h1>
-        <p className="text-sm text-muted-foreground">Manage and analyze customer feedback from all channels</p>
+    <div className="space-y-8 w-full">
+      <div className="pt-2">
+        <h1 className="text-3xl font-bold text-foreground">Feedback Inbox</h1>
+        <p className="text-sm text-muted-foreground mt-2">Manage and analyze customer feedback from all channels</p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-sm font-medium">Filters</CardTitle>
+      <Card className="border border-border">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base font-semibold">Filters</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-3">
+        <CardContent className="px-6 py-4">
+          <div className="flex flex-wrap gap-4 items-center">
             <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
