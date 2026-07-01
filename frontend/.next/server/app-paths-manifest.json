@@ -1,12 +1,3 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/feedback/page": "app/dashboard/feedback/page.js",
-  "/dashboard/tickets/page": "app/dashboard/tickets/page.js",
-  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
-  "/dashboard/insights/page": "app/dashboard/insights/page.js",
-  "/dashboard/memory/page": "app/dashboard/memory/page.js",
-  "/dashboard/channels/page": "app/dashboard/channels/page.js",
-  "/dashboard/integrations/page": "app/dashboard/integrations/page.js",
-  "/dashboard/settings/page": "app/dashboard/settings/page.js",
-  "/dashboard/admin/page": "app/dashboard/admin/page.js"
+  "/dashboard/feedback/page": "app/dashboard/feedback/page.js"
 }

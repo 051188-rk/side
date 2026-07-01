@@ -16,7 +16,7 @@ export default function IntegrationsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card className="border border-border">
-          <CardHeader className="pb-4">
+          <CardHeader className="px-6 pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base font-semibold">API Keys</CardTitle>
               <Button size="sm" className="h-8 text-xs gap-2">
@@ -25,7 +25,7 @@ export default function IntegrationsPage() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-6 py-4">
             <div className="space-y-3">
               <div className="p-4 bg-muted rounded-lg border border-border">
                 <div className="flex items-center justify-between mb-3">
@@ -63,7 +63,7 @@ export default function IntegrationsPage() {
         </Card>
 
         <Card className="border border-border">
-          <CardHeader className="pb-4">
+          <CardHeader className="px-6 pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base font-semibold">Webhooks</CardTitle>
               <Button size="sm" className="h-8 text-xs gap-2">
@@ -72,7 +72,7 @@ export default function IntegrationsPage() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-6 py-4">
             <div className="space-y-3">
               <div className="p-4 bg-muted rounded-lg border border-border">
                 <div className="flex items-center justify-between mb-3">
@@ -121,7 +121,7 @@ export default function IntegrationsPage() {
       </div>
 
       <Card className="border border-border">
-        <CardHeader className="pb-4">
+        <CardHeader className="px-6 pb-4">
           <CardTitle className="text-base font-semibold">Integration Settings</CardTitle>
         </CardHeader>
         <CardContent className="px-6 py-4">

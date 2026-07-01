@@ -45,7 +45,7 @@ export default function AdminPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card className="border border-border">
-          <CardHeader className="pb-4">
+          <CardHeader className="px-6 pb-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-muted-foreground" />
@@ -91,7 +91,7 @@ export default function AdminPage() {
         </Card>
 
         <Card className="border border-border">
-          <CardHeader className="pb-4">
+          <CardHeader className="px-6 pb-4">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-muted-foreground" />
               <CardTitle className="text-base font-semibold">Roles & Permissions</CardTitle>
@@ -107,14 +107,14 @@ export default function AdminPage() {
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{role.description}</p>
                 </div>
-              ))}}
+              ))}
             </div>
           </CardContent>
         </Card>
       </div>
 
       <Card className="border border-border">
-        <CardHeader className="pb-4">
+        <CardHeader className="px-6 pb-4">
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-muted-foreground" />
             <CardTitle className="text-base font-semibold">Audit Logs</CardTitle>

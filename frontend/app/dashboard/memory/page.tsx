@@ -20,7 +20,7 @@ export default function MemoryPage() {
 
           return (
             <Card key={item.id} className="border border-border hover:shadow-md transition-shadow h-full">
-              <CardHeader className="pb-3">
+              <CardHeader className="px-6 pb-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="p-2 bg-muted rounded-lg">
                     <Icon className="w-5 h-5 text-foreground" />
