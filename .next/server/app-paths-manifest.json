@@ -1,8 +1,0 @@
-{
-  "/auth/signup/page": "app/auth/signup/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/landing/page": "app/landing/page.js",
-  "/dashboard/feedback/page": "app/dashboard/feedback/page.js",
-  "/dashboard/memory/page": "app/dashboard/memory/page.js",
-  "/dashboard/channels/page": "app/dashboard/channels/page.js"
-}
