@@ -2,6 +2,7 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime
 from app.repositories.base_repository import BaseRepository
 from app.core.logging import log
+from app.utils.date_utils import utc_now
 
 
 class TicketRepository(BaseRepository):

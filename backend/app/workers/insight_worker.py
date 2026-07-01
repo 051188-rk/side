@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from app.graphs.insight_graph import insight_graph
 from app.repositories.daily_report_repository import DailyReportRepository
 from app.core.logging import log
-from app.utils.date_utils import get_start_of_day, utc_now
+from app.utils.date_utils import utc_now
 
 
 class InsightWorker:

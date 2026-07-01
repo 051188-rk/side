@@ -1,6 +1,5 @@
 import re
 from typing import Optional, List
-from pydantic import validator
 from email_validator import validate_email, EmailNotValidError
 
 

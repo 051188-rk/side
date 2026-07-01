@@ -13,7 +13,7 @@ from app.core.security import (
 )
 from app.core.logging import log
 from app.core.exceptions import (
-    BaseException,
+    AppBaseException,
     NotFoundException,
     BadRequestException,
     UnauthorizedException,
@@ -41,7 +41,7 @@ __all__ = [
     "require_moderator",
     "require_user",
     "log",
-    "BaseException",
+    "AppBaseException",
     "NotFoundException",
     "BadRequestException",
     "UnauthorizedException",

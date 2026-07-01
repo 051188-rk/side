@@ -78,7 +78,7 @@ class TicketService:
 
     async def get_ticket_history(self, ticket_id: str) -> List[Dict[str, Any]]:
         """Get the complete history of a ticket."""
-        updates = await self ticket_update_repo.get_by_ticket(ticket_id)
+        updates = await self.ticket_update_repo.get_by_ticket(ticket_id)
         return updates
 
     async def get_high_priority_tickets(self, min_score: float = 0.7, limit: int = 50) -> List[Dict[str, Any]]:

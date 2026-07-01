@@ -3,7 +3,7 @@ from fastapi import HTTPException, status
 from fastapi.responses import JSONResponse
 
 
-class BaseException(Exception):
+class AppBaseException(Exception):
     def __init__(
         self,
         status_code: int = status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -16,7 +16,7 @@ class BaseException(Exception):
         super().__init__(message)
 
 
-class NotFoundException(BaseException):
+class NotFoundException(AppBaseException):
     def __init__(self, message: str = "Resource not found", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -25,7 +25,7 @@ class NotFoundException(BaseException):
         )
 
 
-class BadRequestException(BaseException):
+class BadRequestException(AppBaseException):
     def __init__(self, message: str = "Bad request", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -34,7 +34,7 @@ class BadRequestException(BaseException):
         )
 
 
-class UnauthorizedException(BaseException):
+class UnauthorizedException(AppBaseException):
     def __init__(self, message: str = "Unauthorized", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -43,7 +43,7 @@ class UnauthorizedException(BaseException):
         )
 
 
-class ForbiddenException(BaseException):
+class ForbiddenException(AppBaseException):
     def __init__(self, message: str = "Forbidden", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -52,7 +52,7 @@ class ForbiddenException(BaseException):
         )
 
 
-class ConflictException(BaseException):
+class ConflictException(AppBaseException):
     def __init__(self, message: str = "Conflict", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_409_CONFLICT,
@@ -61,7 +61,7 @@ class ConflictException(BaseException):
         )
 
 
-class RateLimitException(BaseException):
+class RateLimitException(AppBaseException):
     def __init__(self, message: str = "Rate limit exceeded", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
@@ -70,7 +70,7 @@ class RateLimitException(BaseException):
         )
 
 
-class ExternalServiceException(BaseException):
+class ExternalServiceException(AppBaseException):
     def __init__(self, service: str, message: str = "External service error", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_502_BAD_GATEWAY,
@@ -79,7 +79,7 @@ class ExternalServiceException(BaseException):
         )
 
 
-class LLMException(BaseException):
+class LLMException(AppBaseException):
     def __init__(self, provider: str, message: str = "LLM provider error", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -88,7 +88,7 @@ class LLMException(BaseException):
         )
 
 
-class ValidationException(BaseException):
+class ValidationException(AppBaseException):
     def __init__(self, message: str = "Validation error", details: Optional[dict] = None):
         super().__init__(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -97,7 +97,7 @@ class ValidationException(BaseException):
         )
 
 
-async def base_exception_handler(request: Any, exc: BaseException) -> JSONResponse:
+async def base_exception_handler(request: Any, exc: AppBaseException) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status_code,
         content={

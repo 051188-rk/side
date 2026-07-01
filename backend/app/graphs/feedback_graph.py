@@ -1,6 +1,5 @@
 from typing import Dict, Any, Optional, TypedDict, Annotated
 from langgraph.graph import StateGraph, END
-from langgraph.graph.message import add_messages
 from app.agents import (
     FeedbackCleanerAgent,
     ClassificationAgent,
@@ -338,6 +337,9 @@ class FeedbackProcessingGraph:
     def _should_clean(self, state: FeedbackState) -> str:
         if state.get("is_spam"):
             return "spam"
+        workflow = state.get("context", {}).get("workflow", {})
+        if workflow.get("skip_cleaning", False):
+            return "skip_cleaning"
         return "clean"
 
     def _should_analyze_sentiment(self, state: FeedbackState) -> str:

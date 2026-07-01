@@ -1,7 +1,7 @@
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from app.core.exceptions import (
-    BaseException,
+    AppBaseException,
     base_exception_handler,
     http_exception_handler,
     general_exception_handler,
@@ -13,9 +13,9 @@ async def error_handler_middleware(request: Request, call_next):
     try:
         response = await call_next(request)
         return response
-    except BaseException as e:
+    except AppBaseException as e:
         log.error(
-            f"BaseException: {e.message}",
+            f"AppBaseException: {e.message}",
             extra={
                 "status_code": e.status_code,
                 "details": e.details,

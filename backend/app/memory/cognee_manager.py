@@ -1,7 +1,9 @@
 from typing import Dict, Any, Optional, List
+from datetime import datetime, timedelta
 from app.integrations.cognee_integration import cognee_integration
 from app.repositories.memory_repository import MemoryRepository
 from app.core.logging import log
+from app.utils.date_utils import utc_now, is_expired
 
 
 class CogneeManager:
@@ -238,9 +240,6 @@ class CogneeManager:
 
     async def cleanup_old_memories(self, retention_days: int = 365) -> int:
         try:
-            from datetime import datetime, timedelta
-            from app.utils.date_utils import utc_now, is_expired
-            
             cutoff_date = utc_now() - timedelta(days=retention_days)
             
             all_memories = await self.memory_repo.list_all(limit=10000)

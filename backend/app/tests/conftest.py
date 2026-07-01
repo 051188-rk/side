@@ -11,7 +11,7 @@ def event_loop() -> Generator:
 
 
 @pytest.fixture
-async def mock_firebase_client():
+async def mock_firebase_client(monkeypatch):
     from unittest.mock import Mock, AsyncMock
     
     mock_client = Mock()
@@ -41,6 +41,5 @@ async def mock_firebase_client():
     
     mock_client.db = mock_db
     
-    with pytest.MonkeyPatch().context() as m:
-        m.setattr("app.repositories.firebase_client.firebase_client", mock_client)
-        yield mock_client
+    monkeypatch.setattr("app.repositories.firebase_client.firebase_client", mock_client)
+    yield mock_client
