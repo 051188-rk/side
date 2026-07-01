@@ -1,0 +1,78 @@
+# FastAPI and Server
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+
+# Validation
+pydantic==2.9.2
+pydantic-settings==2.6.0
+
+# Firebase
+firebase-admin==6.5.0
+firebase==0.0.1
+
+# AI/ML
+langchain==0.3.7
+langchain-core==0.3.21
+langchain-groq==0.2.1
+langchain-google-genai==2.0.5
+langgraph==0.2.45
+cognee==0.1.13
+openai==1.54.4
+
+# Async
+asyncio==3.4.3
+aiohttp==3.10.10
+httpx==0.27.2
+
+# Database
+tinydb==4.8.2
+
+# Integrations
+discord.py==2.4.1
+python-telegram-bot==21.10
+google-api-python-client==2.154.0
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+PyGithub==2.4.0
+
+# Email
+aiosmtplib==3.0.2
+email-validator==2.2.0
+
+# Utilities
+python-dotenv==1.0.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dateutil==2.9.0
+pytz==2024.2
+
+# Logging
+structlog==24.4.0
+loguru==0.7.2
+
+# Security
+python-multipart==0.0.12
+itsdangerous==2.2.0
+
+# Rate Limiting
+slowapi==0.1.9
+
+# CORS
+python-cors==1.0.0
+
+# Testing
+pytest==8.3.3
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+httpx==0.27.2
+faker==30.8.1
+
+# Code Quality
+black==24.10.0
+ruff==0.7.2
+mypy==1.13.0
+
+# Documentation
+mkdocs==1.6.1
+mkdocs-material==9.5.44

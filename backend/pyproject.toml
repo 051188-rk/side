@@ -1,0 +1,80 @@
+[project]
+name = "side-backend"
+version = "1.0.0"
+description = "SIDE (Signal Desk) - AI-powered Omnichannel Customer Feedback Intelligence Platform"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.6.0",
+    "firebase-admin>=6.5.0",
+    "langchain>=0.3.7",
+    "langchain-core>=0.3.21",
+    "langchain-groq>=0.2.1",
+    "langchain-google-genai>=2.0.5",
+    "langgraph>=0.2.45",
+    "cognee>=0.1.13",
+    "openai>=1.54.4",
+    "aiohttp>=3.10.10",
+    "httpx>=0.27.2",
+    "tinydb>=4.8.2",
+    "discord.py>=2.4.1",
+    "python-telegram-bot>=21.10",
+    "google-api-python-client>=2.154.0",
+    "google-auth-oauthlib>=1.2.1",
+    "google-auth-httplib2>=0.2.0",
+    "PyGithub>=2.4.0",
+    "aiosmtplib>=3.0.2",
+    "email-validator>=2.2.0",
+    "python-dotenv>=1.0.1",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-dateutil>=2.9.0",
+    "pytz>=2024.2",
+    "structlog>=24.4.0",
+    "loguru>=0.7.2",
+    "slowapi>=0.1.9",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "faker>=30.8.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.10.0",
+    "ruff>=0.7.2",
+    "mypy>=1.13.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.5.44",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["backend/app/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

@@ -1,1 +1,1 @@
-![Logo](public/assets/logo_wh.png)
+![Logo](frontend/public/assets/logo_wh.png)
